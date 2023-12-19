@@ -1,0 +1,31 @@
+﻿
+search
+	-dont show episodes/seasons, only name #DONE
+	-add: goto item or show group name.
+
+download
+	-add timeleft
+	-add total download speed with graph
+	-add try to make smaller download items
+		-hide speed etc when its done
+	-add open with link not downloaded files (to check language)
+	-fix: chunk is not working
+	-fix: max download is not working as intended.
+	-fix: selected items are not visible
+
+viewlist
+	-fix: order		#DONE
+	-fix: not showing last update time on tvshows		#DONE
+	-add: remove from recently
+	-fix: slows down when too many objects
+
+treeview
+	-add: fixed items	#INPROGRESS
+	-add: bring frequently used groups upper
+	-fix: ignore recently update while sort
+
+catalog
+	-add: more tvshow detection
+
+components
+	-add: imageview for logos.

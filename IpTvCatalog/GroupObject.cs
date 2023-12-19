@@ -33,6 +33,8 @@ namespace IpTvParser.IpTvCatalog
 		}
 		public List<ViewObject> Members { get; set; }
 
+		public override DateTime AddedDate => Members.Max(m => m.AddedDate);
+
 		public override string GetTitle { get => "Group"; }
 
 		public override string Logo
@@ -277,19 +279,24 @@ namespace IpTvParser.IpTvCatalog
 			return groupObject;
 		}
 
-		public void SearchThrough(string txt, List<ViewObject> list, CancellationTokenSource source)
+		public void SearchThrough(string[] parameters, List<ViewObject> list, CancellationTokenSource source)
 		{
 			foreach (var m in Members)
 			{
 				if (source.IsCancellationRequested)
 					return;
-				if (m is GroupObject go)
+				if (m is TvShowGroupObject tv)
 				{
-					go.SearchThrough(txt, list, source);
+					if (tv.hasMatch(parameters))
+						list.Add(tv);
+				}
+				else if (m is GroupObject go)
+				{
+					go.SearchThrough(parameters, list, source);
 				}
 				else if (m is WatchableObject wo)
 				{
-					if (wo.hasMatch(txt))
+					if (wo.hasMatch(parameters))
 						list.Add(wo);
 				}
 			}
@@ -312,36 +319,7 @@ namespace IpTvParser.IpTvCatalog
 			return sb.ToString();
 		}
 
-		public int CompareTo(GroupObject? other)
-		{
-			if (this is GroupObject)
-			{
-				if (other is not GroupObject)
-					return -1;
-				return string.Compare(Name, other?.Name);
-			}
-			if (other is GroupObject)
-				return 1;
-			return string.Compare(Name, other?.Name);
-		}
 
-		public override int CompareWith(WatchableObject w)
-		{
-			return Name.CompareTo(w.Name) * -1;
-		}
-
-		public override int CompareWith(GroupObject g)
-		{
-			if (AnyRecently)
-			{
-				if (g.AnyRecently)
-					return Name.CompareTo(g.Name);
-				return -1;
-			}
-			if (g.AnyRecently)
-				return 1;
-			return Name.CompareTo(g.Name);
-		}
 	}
 
 }

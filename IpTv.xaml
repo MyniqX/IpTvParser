@@ -1,19 +1,19 @@
 ﻿<Window x:Class="IpTvParser.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:IpTvParser"
-        xmlns:item="clr-namespace:IpTvParser.IpTvCatalog"
-        xmlns:dwld="clr-namespace:IpTvParser.Helpers" 
-        xmlns:c="clr-namespace:IpTvParser.Controls"
-        mc:Ignorable="d"
-        Title="IpTv Catalog" 
-        Height="560" 
-        Width="880" 
-        Loaded="Window_Initialized" Closed="Window_Closed" 
-        WindowStartupLocation="CenterScreen" 
-        Icon="{StaticResource playDrawingImage}">
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:local="clr-namespace:IpTvParser"
+		xmlns:item="clr-namespace:IpTvParser.IpTvCatalog"
+		xmlns:dwld="clr-namespace:IpTvParser.Helpers" 
+		xmlns:c="clr-namespace:IpTvParser.Controls"
+		mc:Ignorable="d"
+		Title="IpTv Catalog" 
+		Height="560" 
+		Width="880" 
+		Loaded="Window_Initialized" Closed="Window_Closed" 
+		WindowStartupLocation="CenterScreen" 
+		Icon="{StaticResource playDrawingImage}">
 	<Window.Resources>
 		<dwld:IntToVisibilityConverter x:Key="IntToVisibilityConverter" />
 		<dwld:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
@@ -26,13 +26,13 @@
 				<Setter.Value>
 					<ControlTemplate TargetType="TreeView">
 						<Border Name="Border"
-                            CornerRadius="1"
-                            BorderThickness="1"
+							CornerRadius="1"
+							BorderThickness="1"
 								BorderBrush="Transparent"
 								Background="Transparent">
 							<ScrollViewer Focusable="False"
-                                CanContentScroll="False"
-                                Padding="4">
+								CanContentScroll="False"
+								Padding="4">
 								<ItemsPresenter />
 							</ScrollViewer>
 						</Border>
@@ -46,19 +46,19 @@
 				<Setter.Value>
 					<ControlTemplate TargetType="ToggleButton">
 						<Grid Width="20"
-                              Height="20"
-                              Background="Transparent">
+							  Height="20"
+							  Background="Transparent">
 							<Image x:Name="Collapsed"
-                                    HorizontalAlignment="Left"
-                                    VerticalAlignment="Center"
-                                    Margin="1,1,1,1"
-                                    Source="{StaticResource caret_rightDrawingImage}"/>
+									HorizontalAlignment="Left"
+									VerticalAlignment="Center"
+									Margin="1,1,1,1"
+									Source="{StaticResource caret_rightDrawingImage}"/>
 							<Image x:Name="Expanded"
-                                    HorizontalAlignment="Left"
-                                    VerticalAlignment="Center"
-                                    Margin="1,1,1,1"
-                                    Source="{StaticResource caret_downDrawingImage}"
-                                    Visibility="Hidden"/>
+									HorizontalAlignment="Left"
+									VerticalAlignment="Center"
+									Margin="1,1,1,1"
+									Source="{StaticResource caret_downDrawingImage}"
+									Visibility="Hidden"/>
 						</Grid>
 						<ControlTemplate.Triggers>
 							<Trigger Property="IsChecked" Value="True">
@@ -116,7 +116,7 @@
 									<VisualState x:Name="Expanded">
 										<Storyboard>
 											<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)"
-                                                 Storyboard.TargetName="ItemsHost">
+												 Storyboard.TargetName="ItemsHost">
 												<DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
 											</ObjectAnimationUsingKeyFrames>
 										</Storyboard>
@@ -125,26 +125,26 @@
 								</VisualStateGroup>
 							</VisualStateManager.VisualStateGroups>
 							<ToggleButton x:Name="Expander"
-                                            Style="{StaticResource ExpandCollapseToggleStyle}"
-                                            ClickMode="Press"
-                                            IsChecked="{Binding IsExpanded, 
-                                            RelativeSource={RelativeSource TemplatedParent}}"/>
+											Style="{StaticResource ExpandCollapseToggleStyle}"
+											ClickMode="Press"
+											IsChecked="{Binding IsExpanded, 
+											RelativeSource={RelativeSource TemplatedParent}}"/>
 							<Border x:Name="Bd"
-                                      Grid.Column="1"
+									  Grid.Column="1"
 									  CornerRadius="5"
-                                      Background="{TemplateBinding Background}"
-                                      BorderBrush="{TemplateBinding BorderBrush}"
-                                      BorderThickness="{TemplateBinding BorderThickness}"
-                                      Padding="8,1,16,1">
+									  Background="{TemplateBinding Background}"
+									  BorderBrush="{TemplateBinding BorderBrush}"
+									  BorderThickness="{TemplateBinding BorderThickness}"
+									  Padding="8,1,16,1">
 								<ContentPresenter x:Name="PART_Header"
-                                      ContentSource="Header"
-                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"/>
+									  ContentSource="Header"
+									  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"/>
 							</Border>
 							<ItemsPresenter x:Name="ItemsHost"
-                                              Grid.Row="1"
-                                              Grid.Column="1"
-                                              Grid.ColumnSpan="2"
-                                              Visibility="Collapsed" />
+											  Grid.Row="1"
+											  Grid.Column="1"
+											  Grid.ColumnSpan="2"
+											  Visibility="Collapsed" />
 						</Grid>
 						<ControlTemplate.Triggers>
 							<Trigger Property="HasItems" Value="false">
@@ -184,9 +184,9 @@
 					<ControlTemplate TargetType="TabItem">
 						<Grid>
 							<Border Name="Border"
-                                    Background="LightBlue"
-                                    BorderThickness="{TemplateBinding BorderThickness}"
-                                    CornerRadius="6,6,0,0" Padding="4" Margin="1,0">
+									Background="LightBlue"
+									BorderThickness="{TemplateBinding BorderThickness}"
+									CornerRadius="6,6,0,0" Padding="4" Margin="1,0">
 								<Border.BorderBrush>
 									<LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
 										<GradientStop Color="Blue" Offset="0" />
@@ -194,10 +194,10 @@
 									</LinearGradientBrush>
 								</Border.BorderBrush>
 								<ContentPresenter x:Name="ContentSite"
-                                                  VerticalAlignment="Center"
-                                                  HorizontalAlignment="Center"
-                                                  ContentSource="Header"
-                                                  Margin="10,2"/>
+												  VerticalAlignment="Center"
+												  HorizontalAlignment="Center"
+												  ContentSource="Header"
+												  Margin="10,2"/>
 							</Border>
 						</Grid>
 						<ControlTemplate.Triggers>
@@ -224,9 +224,9 @@
 				<Setter.Value>
 					<ControlTemplate TargetType="ListView">
 						<Border BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}"
-                            Background="{TemplateBinding Background}"
-                            CornerRadius="6">
+							BorderThickness="{TemplateBinding BorderThickness}"
+							Background="{TemplateBinding Background}"
+							CornerRadius="6">
 							<ScrollViewer>
 								<ItemsPresenter />
 							</ScrollViewer>
@@ -240,9 +240,9 @@
 				<Setter.Value>
 					<ControlTemplate TargetType="TextBox">
 						<Border BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="{TemplateBinding BorderThickness}"
-                                Background="{TemplateBinding Background}"
-                                CornerRadius="6" Padding="5">
+								BorderThickness="{TemplateBinding BorderThickness}"
+								Background="{TemplateBinding Background}"
+								CornerRadius="6" Padding="5">
 							<ScrollViewer x:Name="PART_ContentHost" />
 						</Border>
 					</ControlTemplate>
@@ -256,11 +256,11 @@
 				<Setter.Value>
 					<ControlTemplate TargetType="Button">
 						<Border Background="{TemplateBinding Background}"
-                                BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="{TemplateBinding BorderThickness}"
-                                CornerRadius="6" Padding="5">
+								BorderBrush="{TemplateBinding BorderBrush}"
+								BorderThickness="{TemplateBinding BorderThickness}"
+								CornerRadius="6" Padding="5">
 							<ContentPresenter HorizontalAlignment="Center"
-                                              VerticalAlignment="Center" />
+											  VerticalAlignment="Center" />
 						</Border>
 					</ControlTemplate>
 				</Setter.Value>
@@ -280,18 +280,18 @@
 	</Window.Resources>
 	<Grid>
 		<Border VerticalAlignment="Bottom" HorizontalAlignment="Right" 
-                Name="toast_panel"
-                CornerRadius="6,0,0,6"
-                Panel.ZIndex="1"
-                Background="LightBlue"
-                BorderBrush="DarkBlue"
-                BorderThickness="0.5"
-                Margin="10,10,0,10">
+				Name="toast_panel"
+				CornerRadius="6,0,0,6"
+				Panel.ZIndex="1"
+				Background="LightBlue"
+				BorderBrush="DarkBlue"
+				BorderThickness="0.5"
+				Margin="10,10,0,10">
 			<StackPanel Orientation="Horizontal" Margin="10">
 				<Image Source="{StaticResource infoDrawingImage}" Width="24" Margin="3"/>
 				<TextBlock Text="Toust Message goes here!!" 
-                           Name="toast_text"
-                           VerticalAlignment="Center" Margin="10,2"/>
+						   Name="toast_text"
+						   VerticalAlignment="Center" Margin="10,2"/>
 			</StackPanel>
 		</Border>
 		<TabControl x:Name="tabControl">
@@ -313,15 +313,15 @@
 					</Grid.RowDefinitions>
 					<GroupBox Header="Groups" Grid.RowSpan="2" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch">
 						<TreeView HorizontalContentAlignment="Stretch" 
-                              VerticalContentAlignment="Stretch"
-                        BorderBrush="Transparent" Background="Transparent"
-                        x:Name="treeView"  
-                        SelectedItemChanged="treeView_SelectedItemChanged" 
-                        MouseRightButtonUp="treeView_left_click">
+							  VerticalContentAlignment="Stretch"
+						BorderBrush="Transparent" Background="Transparent"
+						x:Name="treeView"  
+						SelectedItemChanged="treeView_SelectedItemChanged" 
+						MouseRightButtonUp="treeView_left_click">
 							<TreeView.Resources>
 								<HierarchicalDataTemplate 
-                DataType="{x:Type item:GroupObject}" 
-                ItemsSource="{Binding GMembers,UpdateSourceTrigger=PropertyChanged}">
+				DataType="{x:Type item:GroupObject}" 
+				ItemsSource="{Binding GMembers,UpdateSourceTrigger=PropertyChanged}">
 									<DockPanel Margin="1" Visibility="{Binding Visibilty}">
 										<Image DockPanel.Dock="Left" Source="{Binding GetIcon}" Width="24" Margin="0,0,5,0" />
 										<StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
@@ -359,21 +359,21 @@
 					<Border x:Name="viewPanel" IsEnabled="false" Grid.Column="1" Margin="4,0,0,0" Padding="4,0,4,0" CornerRadius="0,8,8,0">
 						<DockPanel>
 							<c:IconButton 
-                                Margin="2"
-                                HorizontalAlignment="Center" 
-                                Text="Up"
-                                VerticalAlignment="Center"
-                                IsEnabled="{Binding IsBackAvailable,UpdateSourceTrigger=PropertyChanged}"
-                                PreviewMouseLeftButtonUp="view_back_button"
-                                ImageSource="{StaticResource angle_upDrawingImage}" />
+								Margin="2"
+								HorizontalAlignment="Center" 
+								Text="Up"
+								VerticalAlignment="Center"
+								IsEnabled="{Binding IsBackAvailable,UpdateSourceTrigger=PropertyChanged}"
+								PreviewMouseLeftButtonUp="view_back_button"
+								ImageSource="{StaticResource angle_upDrawingImage}" />
 							<GroupBox Header="Search" BorderBrush="LightGray">
 								<DockPanel>
 									<Border
-                                        Width="140"
-                                        DockPanel.Dock="Left" 
-                                        CornerRadius="6" 
-                                        Padding="2,3"  
-                                        VerticalAlignment="Center" Background="{Binding Background, ElementName=searchList}" Margin="1,3" BorderBrush="Gray" BorderThickness="0.3">
+										Width="140"
+										DockPanel.Dock="Left" 
+										CornerRadius="6" 
+										Padding="2,3"  
+										VerticalAlignment="Center" Background="{Binding Background, ElementName=searchList}" Margin="1,3" BorderBrush="Gray" BorderThickness="0.3">
 										<ComboBox  BorderBrush="Transparent" BorderThickness="0" HorizontalAlignment="Stretch" VerticalAlignment="Center" x:Name="searchList"/>
 									</Border>
 									<TextBox Grid.Column="1" Name="searchText" HorizontalAlignment="Stretch" VerticalAlignment="Center" TextChanged="searchText_TextChanged"/>
@@ -382,10 +382,10 @@
 						</DockPanel>
 					</Border>
 					<ListView x:Name="listView" Grid.Column="1" Grid.Row="1"
-                              BorderBrush="Transparent"                              ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
-                              SelectionMode="Single" MouseDoubleClick="listView_MouseDoubleClick" MouseLeftButtonDown="listView_MouseDoubleClick" Grid.ColumnSpan="2"
-                              MouseRightButtonUp="viewlist_context_menu"
-                              Margin="1">
+							  BorderBrush="Transparent"                              ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+							  SelectionMode="Single" MouseDoubleClick="listView_MouseDoubleClick" MouseLeftButtonDown="listView_MouseDoubleClick" Grid.ColumnSpan="2"
+							  MouseRightButtonUp="viewlist_context_menu"
+							  Margin="1">
 						<ListView.ItemsPanel>
 							<ItemsPanelTemplate>
 								<WrapPanel/>
@@ -401,32 +401,32 @@
 										<VisualBrush>
 											<VisualBrush.Visual>
 												<Border 
-                                                    Background="Black"
-                                                    SnapsToDevicePixels="True"
-                                                    CornerRadius="{Binding CornerRadius, RelativeSource={RelativeSource AncestorType=Border}}"
-                                                    Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Border}}"
-                                                    Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType=Border}}"
-                                                    />
+													Background="Black"
+													SnapsToDevicePixels="True"
+													CornerRadius="{Binding CornerRadius, RelativeSource={RelativeSource AncestorType=Border}}"
+													Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Border}}"
+													Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType=Border}}"
+													/>
 											</VisualBrush.Visual>
 										</VisualBrush>
 									</Border.OpacityMask>
 									<DockPanel Width="160">
 										<Image 
-                                            DockPanel.Dock="Top"
-                                            Grid.ZIndex="1"
-                                            Height="240" Width="160" 
-                                            Source="{Binding Path=GetImage,IsAsync=true,UpdateSourceTrigger=PropertyChanged}" 
-                                            Stretch="{Binding GetStretchValue,UpdateSourceTrigger=PropertyChanged}"/>
+											DockPanel.Dock="Top"
+											Grid.ZIndex="1"
+											Height="240" Width="160" 
+											Source="{Binding Path=GetImage,IsAsync=true,UpdateSourceTrigger=PropertyChanged}" 
+											Stretch="{Binding GetStretchValue,UpdateSourceTrigger=PropertyChanged}"/>
 										<ProgressBar
-                                            DockPanel.Dock="Top"
+											DockPanel.Dock="Top"
 											Height="5"
-                                            VerticalAlignment="Center"
+											VerticalAlignment="Center"
 											Background="Pink"
 											Foreground="Red"
-                                            HorizontalAlignment="Stretch" 
-                                            Minimum="0"
-                                            Maximum="100"
-                                            Value="{Binding Path=LogoPercent,UpdateSourceTrigger=PropertyChanged}"/>
+											HorizontalAlignment="Stretch" 
+											Minimum="0"
+											Maximum="100"
+											Value="{Binding Path=LogoPercent,UpdateSourceTrigger=PropertyChanged}"/>
 										<Grid DockPanel.Dock="Top" Margin="2">
 											<Grid.ColumnDefinitions>
 												<ColumnDefinition Width="*"/>
@@ -435,31 +435,31 @@
 											</Grid.ColumnDefinitions>
 											<StackPanel Orientation="Vertical" Grid.Column="2">
 												<Image
-                                                    Margin="2" 
-                                                    Width="16" HorizontalAlignment="Right"
-                                                    Source="{Binding GetIcon}"/>
+													Margin="2" 
+													Width="16" HorizontalAlignment="Right"
+													Source="{Binding GetIcon}"/>
 												<TextBlock HorizontalAlignment="Right" FontSize="10"
-                                                       Text="{Binding GetTitle,UpdateSourceTrigger=PropertyChanged}"
-                                                       Foreground="Black"/>
+													   Text="{Binding GetTitle,UpdateSourceTrigger=PropertyChanged}"
+													   Foreground="Black"/>
 											</StackPanel>
 											<StackPanel Orientation="Vertical" Grid.Column="0" Visibility="{Binding AddedDate,Converter={StaticResource BoolToVisibilityConverter}}" HorizontalAlignment="Left">
 												<Image Source="{StaticResource flameDrawingImage}" HorizontalAlignment="Left"  Width="16" Margin="2"/>
 												<TextBlock Text="{Binding DateDiff}" FontSize="10" Foreground="Black"/>
 											</StackPanel>
 											<Image Grid.Column="1"
-                                                Margin="2"
+												Margin="2"
 												   VerticalAlignment="Top"
-                                                Width="16"
-                                                Source="{Binding GetListIcon,UpdateSourceTrigger=PropertyChanged}"/>
+												Width="16"
+												Source="{Binding GetListIcon,UpdateSourceTrigger=PropertyChanged}"/>
 										</Grid>
 										<TextBlock 
-								            Width="150"
-								            TextWrapping="WrapWithOverflow"
+											Width="150"
+											TextWrapping="WrapWithOverflow"
 											MinHeight="30"
-                                              MaxHeight="30" 
-								            HorizontalAlignment="Center"
-                                            VerticalAlignment="Center" 
-                                            Text="{Binding Name,UpdateSourceTrigger=PropertyChanged}" TextAlignment="Center" Margin="5,3,5,5"/>
+											  MaxHeight="30" 
+											HorizontalAlignment="Center"
+											VerticalAlignment="Center" 
+											Text="{Binding Name,UpdateSourceTrigger=PropertyChanged}" TextAlignment="Center" Margin="5,3,5,5"/>
 									</DockPanel>
 								</Border>
 							</DataTemplate>
@@ -488,11 +488,11 @@
 					<c:IconButton x:Name="btn_add" Grid.Column="1" Text="Add" ImageSource="{StaticResource pictureDrawingImage}" PreviewMouseLeftButtonUp="btn_add_Click"/>
 					<c:IconButton x:Name="btn_browse" Grid.Column="2" Text="Browse" ImageSource="{StaticResource folderDrawingImage}" PreviewMouseLeftButtonUp="btn_browse_Click"/>
 					<ListView x:Name="profilesList" Grid.Row="2" Grid.ColumnSpan="3"
-                              ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
-                              SelectionMode="Single"
-                              HorizontalContentAlignment="Stretch"
-                              MouseRightButtonUp="profile_right_click_menu"
-                              MouseDoubleClick="profiles_MouseDoubleClick">
+							  ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+							  SelectionMode="Single"
+							  HorizontalContentAlignment="Stretch"
+							  MouseRightButtonUp="profile_right_click_menu"
+							  MouseDoubleClick="profiles_MouseDoubleClick">
 						<ListView.ItemsPanel>
 							<ItemsPanelTemplate>
 								<StackPanel Orientation="Vertical"/>
@@ -504,17 +504,17 @@
 									<DockPanel Margin="5">
 										<StackPanel Orientation="Vertical" DockPanel.Dock="Right" Width="100">
 											<Button x:Name="p_update" Margin="5" Visibility="{Binding isUpdatable}" 
-                     Click="ProfileItem_Reload_Click">
+					 Click="ProfileItem_Reload_Click">
 												<Button.Content>
 													<StackPanel Orientation="Horizontal" Margin="2">
 														<Image Source="{StaticResource refreshDrawingImage}" Width="15" Margin="0,0,5,0"/>
 														<StackPanel Orientation="Vertical">
 															<TextBlock Text="Update" VerticalAlignment="Center"/>
 															<TextBlock Text="Last:"
-                                    FontSize="9"/>
+									FontSize="9"/>
 															<TextBlock Text="{Binding lastUpdate,UpdateSourceTrigger=PropertyChanged}"
-                                    Foreground="Blue"
-                                FontSize="9"/>
+									Foreground="Blue"
+								FontSize="9"/>
 														</StackPanel>
 													</StackPanel>
 												</Button.Content>
@@ -540,7 +540,7 @@
 											<Image Source="{StaticResource userDrawingImage}" Width="18" Margin="2"/>
 											<TextBlock Text="Name : " VerticalAlignment="Center"/>
 											<TextBox TextAlignment="Center" Background="LightGray"
-                      Width="150" Text="{Binding Name,Mode=TwoWay}" BorderThickness="0" Foreground="Black"/>
+					  Width="150" Text="{Binding Name,Mode=TwoWay}" BorderThickness="0" Foreground="Black"/>
 											<TextBlock Text="   created   " VerticalAlignment="Center"/>
 											<TextBlock Text="{Binding CreatedDate}" Foreground="Blue" VerticalAlignment="Center"/>
 										</StackPanel>
@@ -614,18 +614,20 @@
 						<c:IconButton Text="Remove if Completed" ImageSource="{StaticResource trashDrawingImage}" PreviewMouseLeftButtonUp="download_remove_if_completed_button" />
 						<c:NumberPicker Margin="2" x:Name="download_count" Text="Max Download" MinValue="1" MaxValue="4"   />
 						<c:NumberPicker Margin="2" x:Name="chunk_count" Text="Chunk" MinValue="1" MaxValue="8"   />
+						<TextBlock VerticalAlignment="Center" Text="Speed : "/>
+						<TextBlock VerticalAlignment="Center" Name="download_speed" Foreground="Blue"/>
 					</StackPanel>
 					<ListView 
-                        x:Name="downloadList"
-                        ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
-                        SelectionMode="Multiple"
-                        MouseRightButtonUp="download_content_menu"
-                        HorizontalContentAlignment="Stretch">
+						x:Name="downloadList"
+						ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+						SelectionMode="Multiple"
+						MouseRightButtonUp="download_content_menu"
+						HorizontalContentAlignment="Stretch">
 						<ListView.ItemTemplate>
 							<DataTemplate>
 								<ProgressBar Name="progressBar" Value="{Binding Percent,UpdateSourceTrigger=PropertyChanged}" 
-                                             Foreground="LightGreen"
-                                             Maximum="100">
+											 Foreground="LightGreen"
+											 Maximum="100">
 									<ProgressBar.Template>
 										<ControlTemplate TargetType="ProgressBar">
 											<Grid Background="{TemplateBinding Background}" >
@@ -633,19 +635,19 @@
 													<DropShadowEffect BlurRadius="2" ShadowDepth="0.3"/>
 												</Grid.Effect>
 												<Border Name="PART_Indicator" 
-                                                        Background="{TemplateBinding Foreground}" 
-                                                        BorderBrush="{TemplateBinding BorderBrush}" 
-                                                        BorderThickness="{TemplateBinding BorderThickness}" 
-                                                        HorizontalAlignment="Left"/>
+														Background="{TemplateBinding Foreground}" 
+														BorderBrush="{TemplateBinding BorderBrush}" 
+														BorderThickness="{TemplateBinding BorderThickness}" 
+														HorizontalAlignment="Left"/>
 												<Border Name="PART_Track" 
-                                                        Background="Transparent"
-                                                        BorderBrush="{TemplateBinding BorderBrush}" 
-                                                        BorderThickness="{TemplateBinding BorderThickness}" >
+														Background="Transparent"
+														BorderBrush="{TemplateBinding BorderBrush}" 
+														BorderThickness="{TemplateBinding BorderThickness}" >
 													<DockPanel>
 														<Image Source="{Binding GetIcon,UpdateSourceTrigger=PropertyChanged}"
-                                                           Width="130"
-                                                           DockPanel.Dock="Left"
-                                                           Margin="5" />
+														   Width="130"
+														   DockPanel.Dock="Left"
+														   Margin="5" />
 														<StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" Margin="12">
 															<c:IconButton Text="Start" IsEnabled="{Binding CanStart,UpdateSourceTrigger=PropertyChanged}" ImageSource="{StaticResource playDrawingImage}" PreviewMouseLeftButtonUp="download_start_button" />
 															<c:IconButton Text="Pause" IsEnabled="{Binding CanPause,UpdateSourceTrigger=PropertyChanged}" ImageSource="{StaticResource pauseDrawingImage}" PreviewMouseLeftButtonUp="download_pause_button"/>
@@ -716,15 +718,15 @@
 						<RowDefinition Height="*"></RowDefinition>
 					</Grid.RowDefinitions>
 					<TextBlock Grid.Row="0" Grid.Column="0" TextWrapping="Wrap" Margin="3" Height="40" VerticalAlignment="Center">
-                        Items covers are downloaded and saved for further usage. So if you want to save some space
-                        you can clean it. but it ll be downloaded again.</TextBlock>
+						Items covers are downloaded and saved for further usage. So if you want to save some space
+						you can clean it. but it ll be downloaded again.</TextBlock>
 					<TextBlock Grid.Row="0" Grid.Column="1" Margin="3" HorizontalAlignment="Center" 
-                               x:Name="ui_cfg_cache_size"
-                               Foreground="Blue"
-                               Text="{Binding SizeInfo,UpdateSourceTrigger=PropertyChanged}"
-                               VerticalAlignment="Center"/>
+							   x:Name="ui_cfg_cache_size"
+							   Foreground="Blue"
+							   Text="{Binding SizeInfo,UpdateSourceTrigger=PropertyChanged}"
+							   VerticalAlignment="Center"/>
 					<Button Grid.Row="0" Grid.Column="2" Margin="3"
-                          Click="ui_cfg_cleancache" >
+						  Click="ui_cfg_cleancache" >
 						<Button.Content>
 							<StackPanel Orientation="Horizontal" Margin="2">
 								<Image Source="{StaticResource trashDrawingImage}" Width="15" Margin="0,0,5,0"/>
@@ -733,10 +735,10 @@
 						</Button.Content>
 					</Button>
 					<TextBlock Grid.Row="1" Grid.Column="0" TextWrapping="Wrap" Margin="3"  Height="40" VerticalAlignment="Center">
-                        Open application config files folder.</TextBlock>
+						Open application config files folder.</TextBlock>
 					<Button Grid.Row="1" Grid.Column="2" 
-                            Click="ui_cfg_open_settings_folder"
-                            Margin="3">
+							Click="ui_cfg_open_settings_folder"
+							Margin="3">
 						<Button.Content>
 							<StackPanel Orientation="Horizontal" Margin="2">
 								<Image Source="{StaticResource folder_openDrawingImage}" Width="15" Margin="0,0,5,0"/>
@@ -750,8 +752,8 @@
 							<DropShadowEffect  BlurRadius="3" ShadowDepth="2" Opacity=".1" />
 						</Border.Effect>
 						<RichTextBox x:Name="outPut"  VerticalScrollBarVisibility="Auto" 
-                                BorderBrush="Transparent" IsReadOnly="True" IsInactiveSelectionHighlightEnabled="False"
-                                 HorizontalScrollBarVisibility="Hidden" Margin="10,10,10,10" FontFamily="Lucida Console" FontSize="10"></RichTextBox>
+								BorderBrush="Transparent" IsReadOnly="True" IsInactiveSelectionHighlightEnabled="False"
+								 HorizontalScrollBarVisibility="Hidden" Margin="10,10,10,10" FontFamily="Lucida Console" FontSize="10"></RichTextBox>
 					</Border>
 				</Grid>
 			</TabItem>

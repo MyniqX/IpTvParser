@@ -137,6 +137,7 @@ namespace IpTvParser.IpTvCatalog
 		public Dictionary<DateTime, List<string>> latelyAdded { get; set; } = new();
 
 		public HashSet<string> bannedGroups { get; set; } = new();
+		public HashSet<string> stickyGroups { set; get; } = new();
 
 		public event PropertyChangedEventHandler? PropertyChanged;
 

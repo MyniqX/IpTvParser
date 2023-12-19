@@ -14,9 +14,15 @@ namespace IpTvParser.IpTvCatalog
 		public GroupObject watchedList;
 		public GroupObject watchList;
 		public GroupObject movieList;
+		public GroupObject tvShowList;
+		public GroupObject livestreamList;
 		Dictionary<string,M3UObject>? m3uMap;
 		public Profile profile { get; set; }
 
+		/// <summary>
+		/// Initializes a new instance of the Catalog class with the specified Profile.
+		/// </summary>
+		/// <param name="p">The Profile to associate with the Catalog.</param>
 		public Catalog(Profile p)
 		{
 			profile = p;
@@ -24,18 +30,34 @@ namespace IpTvParser.IpTvCatalog
 			recentlyAdded = AddGroup("Recently");
 			watchList = AddGroup("Watch List");
 			watchedList = AddGroup("Watched List");
-			movieList = AddGroup("Iptv List");
+			movieList = AddGroup("Movies");
+			tvShowList = AddGroup("Tv Shows");
+			livestreamList = AddGroup("Live Streams");
 			recentlyAdded.GetIcon = MainWindow.HotIcon;
 			watchedList.GetIcon = MainWindow.WatchedIcon;
 			watchList.GetIcon = MainWindow.WatchIcon;
 			movieList.GetIcon = MainWindow.FilmIcon;
+			tvShowList.GetIcon = MainWindow.TvShowIcon;
+			livestreamList.GetIcon = MainWindow.LiveStreamIcon;
 		}
 
+		/// <summary>
+		/// Determines whether a ViewObject should be filtered based on certain conditions.
+		/// </summary>
+		/// <param name="v">The ViewObject to be checked.</param>
+		/// <returns>True if the ViewObject should be filtered, false otherwise.</returns>
 		protected override bool shouldFilter(ViewObject v)
 		{
 			return v is GroupObject g && profile.bannedGroups.Contains(g.Name) == false;
 		}
 
+		/// <summary>
+		/// Adds a list of M3UObjects to the M3UMap. If the M3UMap is not null, the list is added with a filter. If the added list is empty, the method returns. 
+		/// Otherwise, the added objects are assigned an added date and added to the recentlyAdded list. 
+		/// The last check for recentlyAdded is performed and the added objects are added to the latelyAdded dictionary in the profile.
+		/// If the M3UMap is null, the list is added and the filter is built.
+		/// </summary>
+		/// <param name="list">The list of M3UObjects to be added</param>
 		public void AddM3UList(List<M3UObject> list)
 		{
 			if (m3uMap != null)
@@ -119,6 +141,10 @@ namespace IpTvParser.IpTvCatalog
 
 		public override WatchableObject Add(M3UObject m3u)
 		{
+			if (m3u.isTvShow)
+				return tvShowList.AddGroup(m3u.GroupTitle).Add(m3u);
+			else if (m3u.PossibleLiveStream)
+				return livestreamList.AddGroup(m3u.GroupTitle).Add(m3u);
 			return movieList.AddGroup(m3u.GroupTitle).Add(m3u);
 		}
 
@@ -127,9 +153,17 @@ namespace IpTvParser.IpTvCatalog
 			recentlyAdded.lastCheck();
 			watchedList.lastCheck();
 			watchList.lastCheck();
+
+			movieList.Members.ForEach(m => { if (m is GroupObject g) g.isSticky = profile.stickyGroups.Contains(g.Name); });
+			tvShowList.Members.ForEach(m => { if (m is GroupObject g) g.isSticky = profile.stickyGroups.Contains(g.Name); });
+			livestreamList.Members.ForEach(m => { if (m is GroupObject g) g.isSticky = profile.stickyGroups.Contains(g.Name); });
+
 			movieList.lastCheck();
+			tvShowList.lastCheck();
+			livestreamList.lastCheck();
 		}
 
+		//TODO this need fixing... index doesnt work here....
 		public GroupObject getSearchObject(int index)
 		{
 			if (index <= 0)
@@ -143,6 +177,10 @@ namespace IpTvParser.IpTvCatalog
 		public WatchableObject? findObject(string group, string name)
 		{
 			GroupObject? groupObject = movieList.Members.Find(m => string.Compare(m.Name,group) == 0) as GroupObject;
+			if (groupObject == null)
+				groupObject = tvShowList.Members.Find(m => string.Compare(m.Name, group) == 0) as GroupObject;
+			if (groupObject == null)
+				groupObject = livestreamList.Members.Find(m => string.Compare(m.Name, group) == 0) as GroupObject;
 			return groupObject?.findObject(name);
 		}
 

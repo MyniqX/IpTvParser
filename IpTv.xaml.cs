@@ -81,6 +81,24 @@ namespace IpTvParser
 			download_count.Value = downloadManager.MaxDownload;
 			download_count.ValueChanged += download_count_changed;
 			tabControl.SelectedIndex = 1;
+
+			var timer = new Timer();
+			var lastSpeed = 0.0;
+			timer.Interval = 500;
+			timer.Enabled = true;
+			timer.Elapsed += (o, e) =>
+			{
+				var speed = downloadManager.getTotalSpeed();
+				if (speed != lastSpeed)
+				{
+					try
+					{
+						download_speed.Dispatcher.Invoke(() => download_speed.Text = speed.toSize());
+						lastSpeed = speed;
+					}
+					catch { }
+				}
+			};
 		}
 
 		private void viewlist_context_menu(object sender, EventArgs e)
@@ -655,7 +673,8 @@ namespace IpTvParser
 		private void searchProcess(CancellationTokenSource cancellationToken, string text, GroupObject group)
 		{
 			List<ViewObject> watchableObjects = new();
-			group.SearchThrough(text, watchableObjects, cancellationToken);
+			var param = text.Split(" ", StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+			group.SearchThrough(param, watchableObjects, cancellationToken);
 			if (cancellationToken.IsCancellationRequested)
 				return;
 			var temp = new GroupObject
