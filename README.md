@@ -11,3 +11,11 @@ What did i use ?
 - Downloader https://github.com/bezzad/Downloader
 
 
+Some pics :
+
+![ScreenShot](https://github.com/MyniqX/IpTvParser/blob/master/screenshot/catalog.png?raw=true)
+
+![ScreenShot](https://github.com/MyniqX/IpTvParser/blob/master/screenshot/profile.png?raw=true)
+
+What is next ?
+I'm working Vue.js version of this app.
