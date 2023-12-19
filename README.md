@@ -11,11 +11,8 @@ While I want to gain experience with WPF, I try to build something. This time, I
 - Downloader https://github.com/bezzad/Downloader
 
 
-# Some pics :
+![ScreenShot](https://github.com/MyniqX/IpTvParser/blob/master/screenshot/screen.gif?raw=true)
 
-![ScreenShot](https://github.com/MyniqX/IpTvParser/blob/master/screenshot/catalog.png?raw=true)
-
-![ScreenShot](https://github.com/MyniqX/IpTvParser/blob/master/screenshot/profile.png?raw=true)
 
 # What is next ?
 
